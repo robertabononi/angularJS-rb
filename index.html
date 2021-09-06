@@ -13,8 +13,20 @@
 <body>
     <div ng-controller="listaTelefonicaCtrl">
         <div class="jumbotron">
-            <h4 ng-bind="app"></h4>
-            <h4>{{ app }}</h4>
+            <h3>{{ app }}</h3>
+
+            <table clasS="table table-striped">
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                </tr>
+                <tr ng-repeat="contato in contatos">
+                    <!-- <td ng-repeat="(key, value) in contato">{{value}}</td> -->
+                    <td>{{ contato.nome }}</td>
+                    <td>{{ contato.telefone }}</td>
+                </tr>
+            </table>
+
         </div>
     </div>
 
@@ -23,6 +35,11 @@
         angular.module("listaTelefonica", []);
         angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope) {
             $scope.app = "Lista Telefônica";
+            $scope.contatos = [
+                {nome: 'Pedro', telefone: '987654321'},
+                {nome: 'Taila', telefone: '976580976'},
+                {nome: 'Bárbara', telefone: '976650934'}
+            ]
         })
     </script>
 </body>
