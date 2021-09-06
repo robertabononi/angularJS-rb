@@ -6,16 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="lib/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
 
     <title>Lista Telefônica</title>
 </head>
 <body>
-    <div ng-controller="listaTelefonicaCtrl"></div>
+    <div ng-controller="listaTelefonicaCtrl">
+        <div class="jumbotron">
+            <h4 ng-bind="app"></h4>
+            <h4>{{ app }}</h4>
+        </div>
+    </div>
 
     <script src="lib/angular/angular.js"></script>
     <script>
         angular.module("listaTelefonica", []);
         angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope) {
+            $scope.app = "Lista Telefônica";
         })
     </script>
 </body>
