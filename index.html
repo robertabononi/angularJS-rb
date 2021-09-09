@@ -33,7 +33,7 @@
 
             <input class="form-control mb-1" type="text" ng-model="contato.nome" placeholder="Nome">
             <input class="form-control mb-1" type="text" ng-model="contato.telefone" placeholder="Telefone">
-            <select class="form-select" ng-model="contato.operadora" ng-options="operadora.nome for operadora in operadoras">
+            <select class="form-select" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
                 <option value="">Selecione uma operadora</option>
             </select>
             <div class="d-grid">
@@ -54,10 +54,12 @@
                 {nome: 'Bárbara', telefone: '976650934'}
             ];
             $scope.operadoras = [
-                {nome: 'Claro', codigo: 21},
-                {nome: 'Oi', codigo: 31},
-                {nome: 'Tim', codigo: 41},
-                {nome: 'Vivo', codigo: 15}
+                {nome: 'Claro', codigo: 21, categoria: 'Celular'},
+                {nome: 'Oi', codigo: 31, categoria: 'Celular'},
+                {nome: 'Tim', codigo: 41, categoria: 'Celular'},
+                {nome: 'Vivo', codigo: 15, categoria: 'Celular'},
+                {nome: 'Embratel', codigo: 21, categoria: 'Fixo'},
+                {nome: 'GVT', codigo: 25, categoria: 'Fixo'}
             ];
             $scope.addContato = function(contato) {
                 $scope.contatos.push(angular.copy(contato));
