@@ -16,7 +16,7 @@
             <h3>{{ app }}</h3>
 
             <table clasS="table table-striped">
-                <tr>
+                <tr ng-show="contatos.length < 0">
                     <th></th>
                     <th>Nome</th>
                     <th>Telefone</th>
@@ -33,8 +33,6 @@
                 </tr>
             </table>
 
-            <hr>
-
             <input class="form-control mb-1" type="text" ng-model="contato.nome" placeholder="Nome">
             <input class="form-control mb-1" type="text" ng-model="contato.telefone" placeholder="Telefone">
             <select class="form-select" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
@@ -42,7 +40,8 @@
             </select>
             <div class="d-grid">
                 <button class="btn btn-primary btn-block mt-1" ng-click="addContato(contato)" ng-disabled="!contato.nome || !contato.telefone">Adicionar contato</button>
-                <button class="btn btn-danger mt-1" ng-click="apagarContato(contatos)" ng-disabled="!isContatoSelecionado(contatos)">Deletar contato</button>
+                <button class="btn btn-danger mt-1" ng-click="apagarContato(contatos)" ng-show="isContatoSelecionado(contatos)">Deletar contato</button>
+                <!--ngShow e ngHide trabalham apenas na visibilidade do elemento. Não aparecem mas seguem existindo. Já o ngIf interage com a DOM, removendo e adicionando o elemento em questão.-->
             </div>
 
         </div>
