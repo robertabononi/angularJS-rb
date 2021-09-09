@@ -21,6 +21,7 @@
                     <th>Nome</th>
                     <th>Telefone</th>
                     <th>Operadora</th>
+                    <th>Ícone</th>
                 </tr>
                 <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos">
                     <!-- <td ng-repeat="(key, value) in contato">{{value}}</td> -->
@@ -28,6 +29,7 @@
                     <td>{{ contato.nome }}</td>
                     <td>{{ contato.telefone }}</td>
                     <td>{{ contato.operadora.nome }}</td>
+                    <td><div class="color-column" ng-style="{'background-color': contato.cor}"></div></td>
                 </tr>
             </table>
 
@@ -52,9 +54,9 @@
         angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope) {
             $scope.app = "Lista Telefônica";
             $scope.contatos = [
-                {nome: 'Pedro', telefone: '987654321'},
-                {nome: 'Taila', telefone: '976580976'},
-                {nome: 'Bárbara', telefone: '976650934'}
+                {nome: 'Pedro', telefone: '987654321', cor: "blue"},
+                {nome: 'Taila', telefone: '976580976', cor: "purple"},
+                {nome: 'Bárbara', telefone: '976650934', cor: "pink"}
             ];
             $scope.operadoras = [
                 {nome: 'Claro', codigo: 21, categoria: 'Celular'},

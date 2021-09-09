@@ -22,3 +22,8 @@ table {
 .negrito {
     font-weight: bold;
 }
+
+.color-column {
+    width: 20px;
+    height: 20px;
+}
