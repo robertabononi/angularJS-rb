@@ -32,7 +32,7 @@
             <input class="form-control mb-1" type="text" ng-model="contato.nome" placeholder="Nome">
             <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone">
             <div class="d-grid">
-                <button ng-click="addContato(contato)" class="btn btn-primary btn-block mt-1">Adicionar contato</button>
+                <button ng-click="addContato(contato)" ng-disabled="!contato.nome || !contato.telefone" class="btn btn-primary btn-block mt-1">Adicionar contato</button>
             </div>
             {{ contato }}
 
