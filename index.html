@@ -68,6 +68,9 @@
                 $scope.contatos.push(angular.copy(contato));
                 delete $scope.contato
             }
+            $scope.apagarContato = function() {
+                console.log($scope.contatos)
+            }
         })
     </script>
 </body>
