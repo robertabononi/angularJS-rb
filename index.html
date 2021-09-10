@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="lib/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./lib/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="./style.css">
 
     <title>Lista Telefônica</title>
 </head>
@@ -40,18 +40,23 @@
                     <option value="">Selecione uma operadora</option>
                 </select>
             </form>
-            <div ng-show="contatoForm.nome.$error.required && contatoForm.nome.$dirty" class="alert alert-danger mt-2">
-                <p>Por favor, preencha o nome.</p>
+
+            <div ng-messages="contatoForm.nome.$error" class="alert alert-danger mt-2">
+                <div ng-message="required">
+                    <p>Por favor, preencha o nome.</p>
+                </div>
+                <div ng-message="minlength">
+                    <p>O campo "Nome" deve ter no mínimo 3 caracteres.</p>
+                </div>
             </div>
-            <div ng-show="contatoForm.nome.$error.minlength" class="alert alert-danger mt-2">
-                <p>O campo "Nome" deve ter no mínimo 3 caracteres.</p>
-            </div>
+            
             <div ng-show="contatoForm.telefone.$error.required && contatoForm.telefone.$dirty" class="alert alert-danger mt-2">
                 <p>Por favor, preencha o telefone.</p>
             </div>
             <div ng-show="contatoForm.telefone.$error.pattern" class="alert alert-danger mt-2">
                 <p>O campo "Telefone" deve ter o fomato DDDDD-DDDD.</p>
-            </div>
+            </div>  
+
             <div class="d-grid">
                 <button class="btn btn-primary btn-block mt-1" ng-click="addContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar contato</button>
                 <button class="btn btn-danger mt-1" ng-click="apagarContato(contatos)" ng-show="isContatoSelecionado(contatos)">Deletar contato</button>
@@ -62,9 +67,10 @@
     </div>
     <div ng-include="'footer.html'"></div>
 
-    <script src="lib/angular/angular.js"></script>
+    <script src="./lib/angular/angular.js"></script>
+    <script src="./lib/angular/angular-messages.js"></script>
     <script>
-        angular.module("listaTelefonica", []);
+        angular.module("listaTelefonica", ["ngMessages"]);
         angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope) {
             $scope.app = "Lista Telefônica";
             $scope.contatos = [
