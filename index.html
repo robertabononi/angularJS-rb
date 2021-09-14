@@ -21,13 +21,13 @@
             <table clasS="table table-striped">
                 <tr ng-show="contatos.length > 0">
                     <th></th>
-                    <th>Nome</th>
-                    <th>Telefone</th>
+                    <th><a href="" ng-click="ordenarPor('nome')">Nome</a></th>
+                    <th><a href="" ng-click="ordenarPor('telefone')">Telefone</a></th>
                     <th>Operadora</th>
                     <!-- <th>Ícone</th> -->
                     <th>Data</th>
                 </tr>
-                <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos | filter: criterioDeBusca">
+                <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos | filter: criterioDeBusca | orderBy: criterioDeOrdenacao: direcaoDaOrdenacao">
                     <!-- <td ng-repeat="(key, value) in contato">{{value}}</td> -->
                     <td><input type="checkbox" ng-model="contato.selecionado"></td>
                     <td>{{ contato.nome | uppercase }}</td>
@@ -41,7 +41,7 @@
             <form name="contatoForm">
                 <input class="form-control mb-1" type="text" ng-model="contato.nome" name="nome" placeholder="Nome" ng-required="true" ng-minlength="3">
                 <input class="form-control mb-1" type="text" ng-model="contato.telefone" name="telefone" placeholder="Telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/">
-                <select class="form-select" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
+                <select class="form-select" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras | orderBy: 'nome'">
                     <option value="">Selecione uma operadora</option>
                 </select>
             </form>
@@ -105,6 +105,10 @@
                 return contatos.some(function(contato) {
                     return contato.selecionado;
                 });
+            }
+            $scope.ordenarPor = (campo) => {
+                $scope.criterioDeOrdenacao = campo;
+                $scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;
             }
         })
     </script>
