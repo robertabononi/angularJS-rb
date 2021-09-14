@@ -46,7 +46,7 @@
                 </select>
             </form>
 
-            <div ng-messages="contatoForm.nome.$error" class="alert alert-danger mt-2">
+            <div ng-show="contatoForm.nome.$dirty" ng-messages="contatoForm.nome.$error" class="alert alert-danger mt-2">
                 <div ng-message="required">
                     <p>Por favor, preencha o nome.</p>
                 </div>
