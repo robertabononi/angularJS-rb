@@ -27,7 +27,7 @@
                     <!-- <th>Ícone</th> -->
                     <th>Data</th>
                 </tr>
-                <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos | filter: criterioDeBusca | orderBy: criterioDeOrdenacao: direcaoDaOrdenacao">
+                <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos | limitTo: 2 | filter: criterioDeBusca | orderBy: criterioDeOrdenacao: direcaoDaOrdenacao">
                     <!-- <td ng-repeat="(key, value) in contato">{{value}}</td> -->
                     <td><input type="checkbox" ng-model="contato.selecionado"></td>
                     <td>{{ contato.nome | uppercase }}</td>
