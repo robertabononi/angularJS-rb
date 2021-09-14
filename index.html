@@ -21,15 +21,17 @@
                     <th>Nome</th>
                     <th>Telefone</th>
                     <th>Operadora</th>
-                    <th>Ícone</th>
+                    <!-- <th>Ícone</th> -->
+                    <th>Data</th>
                 </tr>
                 <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos">
                     <!-- <td ng-repeat="(key, value) in contato">{{value}}</td> -->
                     <td><input type="checkbox" ng-model="contato.selecionado"></td>
-                    <td>{{ contato.nome }}</td>
+                    <td>{{ contato.nome | uppercase }}</td>
                     <td>{{ contato.telefone }}</td>
-                    <td>{{ contato.operadora.nome }}</td>
-                    <td><div class="color-column" ng-style="{'background-color': contato.cor}"></div></td>
+                    <td>{{ contato.operadora.nome | lowercase }}</td>
+                    <!-- <td><div class="color-column" ng-style="{'background-color': contato.cor}"></div></td> -->
+                    <td>{{ contato.data | date : "dd/MM/yyyy HH:mm" }}</td>
                 </tr>
             </table>
 
@@ -49,7 +51,7 @@
                     <p>O campo "Nome" deve ter no mínimo 3 caracteres.</p>
                 </div>
             </div>
-            
+
             <div ng-show="contatoForm.telefone.$error.required && contatoForm.telefone.$dirty" class="alert alert-danger mt-2">
                 <p>Por favor, preencha o telefone.</p>
             </div>
@@ -74,9 +76,9 @@
         angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope) {
             $scope.app = "Lista Telefônica";
             $scope.contatos = [
-                {nome: 'Pedro', telefone: '987654321', cor: "blue"},
-                {nome: 'Taila', telefone: '976580976', cor: "purple"},
-                {nome: 'Bárbara', telefone: '976650934', cor: "pink"}
+                {nome: 'Pedro', telefone: '987654321', cor: "blue", data: new Date(), operadora: {nome: 'Tim', codigo: 41, categoria: 'Celular'}},
+                {nome: 'Taila', telefone: '976580976', cor: "purple", data: new Date(), operadora: {nome: 'Vivo', codigo: 15, categoria: 'Celular'}},
+                {nome: 'Bárbara', telefone: '976650934', cor: "pink", data: new Date(), operadora: {nome: 'Oi', codigo: 31, categoria: 'Celular'}}
             ];
             $scope.operadoras = [
                 {nome: 'Claro', codigo: 21, categoria: 'Celular'},
