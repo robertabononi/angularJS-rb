@@ -27,10 +27,10 @@
                     <!-- <th>Ícone</th> -->
                     <th>Data</th>
                 </tr>
-                <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos | limitTo: 2 | filter: criterioDeBusca | orderBy: criterioDeOrdenacao: direcaoDaOrdenacao">
+                <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos | filter: criterioDeBusca | orderBy: criterioDeOrdenacao: direcaoDaOrdenacao">
                     <!-- <td ng-repeat="(key, value) in contato">{{value}}</td> -->
                     <td><input type="checkbox" ng-model="contato.selecionado"></td>
-                    <td>{{ contato.nome | uppercase }}</td>
+                    <td>{{ contato.nome }}</td>
                     <td>{{ contato.telefone }}</td>
                     <td>{{ contato.operadora.nome | lowercase }}</td>
                     <!-- <td><div class="color-column" ng-style="{'background-color': contato.cor}"></div></td> -->
@@ -77,10 +77,10 @@
     <script src="./lib/angular/angular-locale_pt-br.js"></script>
     <script>
         angular.module("listaTelefonica", ["ngMessages"]);
-        angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope) {
+        angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope, $filter) {
             $scope.app = "Lista Telefônica";
             $scope.contatos = [
-                {nome: 'Pedro', telefone: '987654321', cor: "blue", data: new Date(), operadora: {nome: 'Tim', codigo: 41, categoria: 'Celular'}},
+                {nome: $filter('uppercase')('Pedro'), telefone: '987654321', cor: "blue", data: new Date(), operadora: {nome: 'Tim', codigo: 41, categoria: 'Celular'}},
                 {nome: 'Taila', telefone: '976580976', cor: "purple", data: new Date(), operadora: {nome: 'Vivo', codigo: 15, categoria: 'Celular'}},
                 {nome: 'Bárbara', telefone: '976650934', cor: "pink", data: new Date(), operadora: {nome: 'Oi', codigo: 31, categoria: 'Celular'}}
             ];
