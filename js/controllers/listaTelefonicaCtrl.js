@@ -17,6 +17,7 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
     }
     
     $scope.addContato = function(contato) {
+        contato.data = new Date;
         $scope.contatos.push(angular.copy(contato));
         delete $scope.contato;
         $scope.contatoForm.$setPristine();
